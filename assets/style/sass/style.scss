@@ -1,0 +1,53 @@
+@import "_partials/mixins";
+@import "_partials/variables";
+body{
+	background-color:$w !important;
+}
+
+.site-header{
+	background-color:$r !important;
+	a{
+		color:$w !important;
+	}
+}
+
+ .a{
+	color:$r !important;
+}
+
+.main-navigation {
+	.main-nav ul {
+		a{
+			color:$b !important;
+			&:hover{
+					color:$r !important;
+			}
+		}
+		.current-menu-item,  .current-menu-parent, .current-menu-ancestor, .current_page_item, .current_page_parent, .current_page_ancestor  {
+			> a{
+				color:$r !important;
+				&:hover{
+					color:$b !important;
+				}
+			}
+			
+		}
+	}
+}
+
+.sub-menu{
+	a{
+		background-color: $r !important;
+		color:$w !important;
+		&:hover{
+			background-color:$w !important;
+			color:$r !important;
+		}
+	}
+	.current-menu-item{
+			a{
+				background-color: $w !important;
+				color:$r !important;
+			}
+		}
+}

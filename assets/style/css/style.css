@@ -1,0 +1,51 @@
+/* line 3, ../sass/style.scss */
+body {
+  background-color: #ffffff !important;
+}
+
+/* line 7, ../sass/style.scss */
+.site-header {
+  background-color: #ff0000 !important;
+}
+/* line 9, ../sass/style.scss */
+.site-header a {
+  color: #ffffff !important;
+}
+
+/* line 14, ../sass/style.scss */
+.a {
+  color: #ff0000 !important;
+}
+
+/* line 20, ../sass/style.scss */
+.main-navigation .main-nav ul a {
+  color: #000000 !important;
+}
+/* line 22, ../sass/style.scss */
+.main-navigation .main-nav ul a:hover {
+  color: #ff0000 !important;
+}
+/* line 27, ../sass/style.scss */
+.main-navigation .main-nav ul .current-menu-item > a, .main-navigation .main-nav ul .current-menu-parent > a, .main-navigation .main-nav ul .current-menu-ancestor > a, .main-navigation .main-nav ul .current_page_item > a, .main-navigation .main-nav ul .current_page_parent > a, .main-navigation .main-nav ul .current_page_ancestor > a {
+  color: #ff0000 !important;
+}
+/* line 29, ../sass/style.scss */
+.main-navigation .main-nav ul .current-menu-item > a:hover, .main-navigation .main-nav ul .current-menu-parent > a:hover, .main-navigation .main-nav ul .current-menu-ancestor > a:hover, .main-navigation .main-nav ul .current_page_item > a:hover, .main-navigation .main-nav ul .current_page_parent > a:hover, .main-navigation .main-nav ul .current_page_ancestor > a:hover {
+  color: #000000 !important;
+}
+
+/* line 39, ../sass/style.scss */
+.sub-menu a {
+  background-color: #ff0000 !important;
+  color: #ffffff !important;
+}
+/* line 42, ../sass/style.scss */
+.sub-menu a:hover {
+  background-color: #ffffff !important;
+  color: #ff0000 !important;
+}
+/* line 48, ../sass/style.scss */
+.sub-menu .current-menu-item a {
+  background-color: #ffffff !important;
+  color: #ff0000 !important;
+}
