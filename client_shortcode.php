@@ -2,76 +2,81 @@
 
 function upC($atts, $content = null){
     extract(shortcode_atts(array(
-        "id" => "id"
+        "client_name" => ""
         ),$atts));
-    if($id == "dtc"){
-        $output ="<table class='display' id='dtc'>";
-        $output .="<thead>";
-        $output .= "<tr>
-                    <th>Client</th>
-                    <th>Edit</th>
-                    <th>View</th>
-                </tr>";
-        $output .="</thead>";
 
-    }
-    else{
-        $output ="<table class='display' id='dt'>";
+    // WP_Query arguments
+    $args = array (
+        'post_type' => array( 'clients' ),
+        'category_name'          => $client_name
+    );
+
+    // The Query
+    $query_client = new WP_Query( $args );
+
+    $output = "";
+
+       $output .="<table class='display' id='dtc'>";
+
+    
         $output .="<thead>";
         $output .= "<tr>
                     <th>Date Uploaded</th>
                     <th>File Name</th>
                     <th>URL</th>
-                    <th>Type</t h>
+                    <th>Type</th>
                     <th>Uploaded By</th>
                 </tr>";
         $output .="</thead>";
-    }
+  
+
     $output .="<tbody>";
-    $output .= do_shortcode($content);
+
+    if($query_client->have_posts()){
+         while ( $query_client->have_posts() ) { 
+            $query_client->the_post(); 
+
+            if(!isset($client_name) ){
+                $clientName = get_category();
+
+                $output .= "<tr>";
+                $output .= "<td>".$clientName."</td>";
+                $output .= "<td><a href='".get_bloginfo('url')."/"."clients/".$clientName."' target='_blank'>".$clientName." View</a></td>";
+                $output .= "</tr>";
+            }
+            else{
+                $c_opt_file = rwmb_meta("Cfile", "type=file");
+                $c_opt_author = rwmb_meta("uploaded_by" );
+                $c_opt_type = rwmb_meta("type");
+                $c_opt_file_name = get_the_title();
+                $c_opt_date = get_the_date();
+
+               foreach ( $c_opt_file as $c) {
+                   $c_file = $c["url"] ;
+               }
+
+                $output .= "<tr>";
+                $output .= "<td>". $c_opt_date."</td>";
+                $output .=  "<td>".$c_opt_file_name."</td>";
+                $output .= "<td><a href='".$c_file."' target='_blank'>".$c_file."</a></td>";
+                $output .= "<td>".$c_opt_type."</td>";
+                $output .= "<td>".$c_opt_author."</td>";
+                $output .= "</tr>";
+            }
+        }
+    }
+    
+    
     $output .="</tbody>";
     $output .="<tfooter></tfooter>";
     $output .= "</table>";
 
-
+   
 
     return $output;
+ wp_reset_postdata();
 
 }
 
 add_shortcode("uptable", "upC");
 
-function upS($atts, $content = null){
-    extract(shortcode_atts(array(
-        "table" => "table",
-        "client" => "client",
-        "edit" => "edit",
-        "view" => "view",
-        "uploaded_by" => "uploaded_by",
-        "url" =>"url",
-        "date_uploaded" => "date_uploaded",
-        "file_name" =>"file_name",
-        "type" => "type"
-        ),$atts));
-
-    if($table == "client"){
-        $output = "<tr>";
-        $output .= "<td>".$client."</td>";
-        $output .= "<td><a href='".$edit."' target='_blank'>".$edit."</a></td>";
-        $output .= "<td><a href='".$view."' target='_blank'>".$view."</a></td>";
-        $output .= "</tr>";
-    }
-    else{
-        $output = "<tr>";
-        $output .= "<td>".$date_uploaded."</td>";
-        $output .=  "<td>".$file_name."</td>";
-        $output .= "<td><a href='".$url."' target='_blank'>".$url."</a></td>";
-        $output .= "<td>".$type."</td>";
-        $output .= "<td>".$uploaded_by."</td>";
-        $output .= "</tr>";
-    }
-
-    return $output;
-}
-
-add_shortcode("upcontent", "upS");
